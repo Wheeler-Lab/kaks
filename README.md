@@ -14,7 +14,7 @@ Performs a Ka/Ks analysis - i.e. determine the ratio of the number of non-synony
 
 `kaks` requires NCBI `blastp` to be installed. By far the easiest way is via conda by running `conda install -c bioconda blast`. After this you can run
 ```
-pip install kaks
+pip install https://github.com/Wheeler-Lab/kaks
 ```
 to install the package.
 
