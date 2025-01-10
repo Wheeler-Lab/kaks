@@ -1,0 +1,7 @@
+name: "kaks"
+channels:
+  - bioconda
+dependencies:
+  - blast
+  - pandas
+  - biopython
