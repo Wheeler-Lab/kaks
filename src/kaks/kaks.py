@@ -47,7 +47,7 @@ def _blastnp(executable: Literal["blastn"] | Literal["blastp"], query_filename: 
                 # All relevant results are under BlastOutput2 - report - results - search
                 entry = json.load(f)['BlastOutput2']["report"]["results"]["search"]
             # Gather all hits, and all hsps for each hit, saving the target title.
-            hits = [(hit['description'][0]['title'].split('|')[0].strip(), hsp) for hit in entry["hits"] for hsp in hit["hsps"]]
+            hits = [(hit['description'][0]['title'].split(' ')[0].strip(), hsp) for hit in entry["hits"] for hsp in hit["hsps"]]
             if hits:
                 # If we have any hits, save the one with the lowest evalue
                 name, hit = min(hits, key=lambda e: e[1]["evalue"])
@@ -95,7 +95,7 @@ class FASTAFile(abc.Mapping):
                     if name is not None:
                         sequences[name] = s
                     s = ""
-                    name = line[1:].split("|")[0].strip()
+                    name = line[1:].split(" ")[0].strip()
                 else:
                     s += line.strip()
             sequences[name] = s
