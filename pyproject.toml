@@ -10,6 +10,7 @@ requires-python = ">= 3.10"
 
 [project.scripts]
 kaks = "kaks.kaks:cli_main"
+rbb = "kaks.kaks:cli_rbb"
 
 [build-system]
 requires = ["flit_core>=3.4"]

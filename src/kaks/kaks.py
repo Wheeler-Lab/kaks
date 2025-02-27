@@ -290,3 +290,17 @@ def cli_main():
 
     args = parser.parse_args()
     kaks_multiple(args.query, args.reference).to_csv("/dev/stdout")
+
+def cli_rbb():
+    parser = argparse.ArgumentParser(
+        description="Perform a reciprocal best BLAST analysis for the given query and reference FASTA files. The result is given in CSV format to stdout."
+    )
+    parser.add_argument("query", type=pathlib.Path, help="The filename of the query FASTA.")
+    parser.add_argument("reference", type=pathlib.Path, help="The filename(s) of the reference FASTA.")
+    parser.add_argument("--query-type", choices=["nucl", "prot"], default="nucl", help="The type of query, nucleotide ('nucl') or protein ('prot'). Default is 'prot'.")
+
+    args = parser.parse_args()
+    query = FASTAFile(args.query, type=args.query_type)
+    reference = FASTAFile(args.reference, type=args.query_type)
+
+    reciprocal_best_blast(query, reference).to_csv("/dev/stdout")
